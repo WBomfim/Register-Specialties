@@ -6,7 +6,9 @@
     <property name="checkstyle.cache.file" value="${project_loc}/target/checkstyle-cachefile"/>
   </local-check-config>
   <fileset name="java-sources-checkstyle" enabled="true" check-config-name="Google Checks" local="false">
-    <file-match-pattern match-pattern="^src/main/resources.*\.properties" include-pattern="true"/>
+    <file-match-pattern match-pattern="^src/main/java/.*\/.*\.java" include-pattern="true"/>
+    <file-match-pattern match-pattern="^src/main/resources/.*\.properties" include-pattern="true"/>
+    <file-match-pattern match-pattern="^src/main/resources/.*\.properties" include-pattern="true"/>
     <file-match-pattern match-pattern="^src/test/resources/.*\.properties" include-pattern="true"/>
   </fileset>
 </fileset-config>
