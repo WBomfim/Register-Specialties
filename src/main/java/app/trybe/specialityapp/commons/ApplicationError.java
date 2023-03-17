@@ -1,5 +1,9 @@
 package app.trybe.specialityapp.commons;
 
+/**
+ * Class ApplicationError.
+ *
+ */
 public class ApplicationError {
   private int status;
   private String message;
