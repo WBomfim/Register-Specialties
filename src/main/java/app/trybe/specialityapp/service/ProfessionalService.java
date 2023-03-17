@@ -16,6 +16,7 @@ public class ProfessionalService {
   private ProfessionalRepository professionalRepository;
 
   public List<Professional> findAll() {
+    System.out.println("AQUIIIIIIIIIIIIIIIIIIIII: ");
     return professionalRepository.findAll();
   }
 
