@@ -23,6 +23,8 @@ public class Professional {
   @Column
   private String speciality;
 
+  public Professional() {}
+
   /**
    * Constructor Professional.
    *
