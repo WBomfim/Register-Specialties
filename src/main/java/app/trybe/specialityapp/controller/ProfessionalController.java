@@ -62,8 +62,8 @@ public class ProfessionalController {
   @Produces("application/json")
   public Response add(Professional professional) {
     if (professional.getId() != null) {
-      ApplicationError error =
-          new ApplicationError(Response.Status.BAD_REQUEST, "Não é permitido inserir novos registros com ID explícito");
+      ApplicationError error = new ApplicationError(Response.Status.BAD_REQUEST,
+          "Não é permitido inserir novos registros com ID explícito");
       return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
     }
 
@@ -81,8 +81,8 @@ public class ProfessionalController {
     try {
       professionalService.findById(id);
     } catch (Exception e) {
-      ApplicationError error =
-          new ApplicationError(Response.Status.NOT_FOUND, "Não é possível editar, o ID informado não existe");
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND,
+          "Não é possível editar, o ID informado não existe");
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
 
@@ -100,8 +100,8 @@ public class ProfessionalController {
     try {
       professionalService.findById(id);
     } catch (Exception e) {
-      ApplicationError error =
-          new ApplicationError(Response.Status.NOT_FOUND, "Não é possível deletar, o ID informado não existe");
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND,
+          "Não é possível deletar, o ID informado não existe");
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
 
