@@ -1,5 +1,6 @@
 package app.trybe.specialityapp.controller;
 
+import app.trybe.specialityapp.commons.ApplicationError;
 import app.trybe.specialityapp.model.Professional;
 import app.trybe.specialityapp.service.ProfessionalService;
 import java.util.List;
@@ -32,6 +33,12 @@ public class ProfessionalController {
   @Produces("application/json")
   public Response findAll() {
     List<Professional> professionals = professionalService.findAll();
+  
+    if (professionals.isEmpty()) {
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, "Nenhum registro foi encontrado!");
+      return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+    }
+
     return Response.ok(professionals).build();
   }
 
@@ -63,7 +70,6 @@ public class ProfessionalController {
   @PUT
   @Path("/edit/{id}")
   public Response update(@PathParam("id") Integer id, Professional professional) {
-    professional.setId(id);
     professionalService.update(professional);
     return Response.ok(String.format("ID [%d] atualizado", id)).build();
   }

@@ -2080,3 +2080,24 @@ org.hibernate.InstantiationException: No default constructor for entity:  : app.
 2023-03-17 20:03:18.634  INFO 441465 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
 2023-03-17 20:03:18.793  INFO 441465 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-03-17 20:03:18.801  INFO 441465 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-03-17 20:24:35.692  INFO 450377 --- [main] a.t.s.SpecialityAppApplication           : Starting SpecialityAppApplication using Java 11.0.17 on wpb-ubuntu with PID 450377 (/home/wbomfim/Repositórios/Projetos/Trybe/05_Aceleração-Java/10_Cadastro-Especialidades/target/classes started by wbomfim in /home/wbomfim/Repositórios/Projetos/Trybe/05_Aceleração-Java/10_Cadastro-Especialidades)
+2023-03-17 20:24:35.694  INFO 450377 --- [main] a.t.s.SpecialityAppApplication           : No active profile set, falling back to 1 default profile: "default"
+2023-03-17 20:24:36.208  INFO 450377 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-17 20:24:36.255  INFO 450377 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 1 JPA repository interfaces.
+2023-03-17 20:24:36.605  INFO 450377 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-03-17 20:24:36.613  INFO 450377 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-03-17 20:24:36.614  INFO 450377 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-03-17 20:24:36.679  INFO 450377 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-03-17 20:24:36.679  INFO 450377 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 940 ms
+2023-03-17 20:24:36.825  INFO 450377 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-03-17 20:24:36.908  INFO 450377 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-03-17 20:24:36.938  INFO 450377 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-17 20:24:36.964  INFO 450377 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-03-17 20:24:37.044  INFO 450377 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-17 20:24:37.108  INFO 450377 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2023-03-17 20:24:37.418  INFO 450377 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-17 20:24:37.425  INFO 450377 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-17 20:24:37.695  WARN 450377 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-17 20:24:37.976  INFO 450377 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-17 20:24:37.988  INFO 450377 --- [main] a.t.s.SpecialityAppApplication           : Started SpecialityAppApplication in 2.642 seconds (JVM running for 2.93)
+2023-03-17 20:25:00.538  INFO 450377 --- [http-nio-8080-exec-1] a.t.specialityapp.config.JerseyConfig    : Configurando binder
