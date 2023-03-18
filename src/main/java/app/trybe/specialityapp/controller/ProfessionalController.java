@@ -33,9 +33,10 @@ public class ProfessionalController {
   @Produces("application/json")
   public Response findAll() {
     List<Professional> professionals = professionalService.findAll();
-  
+
     if (professionals.isEmpty()) {
-      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, "Nenhum registro foi encontrado!");
+      ApplicationError error =
+          new ApplicationError(Response.Status.NOT_FOUND, "Nenhum registro foi encontrado!");
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
 
