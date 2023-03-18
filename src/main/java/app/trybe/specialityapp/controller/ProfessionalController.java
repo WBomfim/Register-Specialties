@@ -4,9 +4,12 @@ import app.trybe.specialityapp.commons.ApplicationError;
 import app.trybe.specialityapp.model.Professional;
 import app.trybe.specialityapp.service.ProfessionalService;
 import java.util.List;
+import java.util.Optional;
 import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -32,15 +35,13 @@ public class ProfessionalController {
   @Path("/all")
   @Produces("application/json")
   public Response findAll() {
-    List<Professional> professionals = professionalService.findAll();
-
-    if (professionals.isEmpty()) {
-      ApplicationError error =
-          new ApplicationError(Response.Status.NOT_FOUND, "Nenhum registro foi encontrado!");
+    try {
+      List<Professional> professionals = professionalService.findAll();
+      return Response.ok(professionals).build();
+    } catch (NotFoundException e) {
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, e.getMessage());
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
-
-    return Response.ok(professionals).build();
   }
 
   /**
@@ -50,8 +51,13 @@ public class ProfessionalController {
   @Path("/{id}")
   @Produces("application/json")
   public Response findById(@PathParam("id") Integer id) {
-    Professional professional = professionalService.findById(id);
-    return Response.ok(professional).build();
+    try {
+      Optional<Professional> professional = professionalService.findById(id);
+      return Response.ok(professional).build();
+    } catch (NotFoundException e) {
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, e.getMessage());
+      return Response.status(Response.Status.NOT_FOUND).entity(error).build();
+    }
   }
 
   /**
@@ -59,16 +65,16 @@ public class ProfessionalController {
    */
   @POST
   @Path("/add")
+  @Consumes("application/json")
   @Produces("application/json")
   public Response add(Professional professional) {
-    if (professional.getId() != null) {
-      ApplicationError error = new ApplicationError(Response.Status.BAD_REQUEST,
-          "Não é permitido inserir novos registros com ID explícito");
+    try {
+      professionalService.add(professional);
+      return Response.status(Response.Status.CREATED).entity("Inserido").build();
+    } catch (IllegalArgumentException e) {
+      ApplicationError error = new ApplicationError(Response.Status.BAD_REQUEST, e.getMessage());
       return Response.status(Response.Status.BAD_REQUEST).entity(error).build();
     }
-
-    professionalService.add(professional);
-    return Response.status(Response.Status.CREATED).entity("Inserido").build();
   }
 
   /**
@@ -76,18 +82,16 @@ public class ProfessionalController {
    */
   @PUT
   @Path("/edit/{id}")
+  @Consumes("application/json")
   @Produces("application/json")
   public Response update(@PathParam("id") Integer id, Professional professional) {
     try {
-      professionalService.findById(id);
-    } catch (Exception e) {
-      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND,
-          "Não é possível editar, o ID informado não existe");
+      professionalService.update(id, professional);
+      return Response.ok(String.format("ID [%d] atualizado", id)).build();
+    } catch (NotFoundException e) {
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, e.getMessage());
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
-
-    professionalService.update(professional);
-    return Response.ok(String.format("ID [%d] atualizado", id)).build();
   }
 
   /**
@@ -98,14 +102,11 @@ public class ProfessionalController {
   @Produces("application/json")
   public Response delete(@PathParam("id") Integer id) {
     try {
-      professionalService.findById(id);
-    } catch (Exception e) {
-      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND,
-          "Não é possível deletar, o ID informado não existe");
+      professionalService.delete(id);
+      return Response.ok(String.format("ID [%d] removido", id)).build();
+    } catch (NotFoundException e) {
+      ApplicationError error = new ApplicationError(Response.Status.NOT_FOUND, e.getMessage());
       return Response.status(Response.Status.NOT_FOUND).entity(error).build();
     }
-
-    professionalService.delete(id);
-    return Response.ok(String.format("ID [%d] removido", id)).build();
   }
 }
